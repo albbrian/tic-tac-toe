@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
 import './TicTacToe.scss';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Board from './Board';
+import Header from './Header';
 
 const checkWinner = (moveHistory: (Participant | null)[]): Participant | null => {
   const winningPatterns = [
@@ -40,15 +42,47 @@ const freshMoveHistory = [
 function TicTacToe() {
   const [moveHistory, setMoveHistory] = useState<(Participant | null)[]>(freshMoveHistory);
   const [isCrossNext, setIsCrossNext] = useState(true);
+  const [gameMode, setGameMode] = useState<GameMode>('pvp');
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const gameModeQueryParam = queryParams.get('game-mode') as GameMode | null;
+  const isNewQueryParam = queryParams.get('is-new');
+
+  const ticTacToeLocalStorage = localStorage.getItem('tic-tac-toe-storage');
+
+  const clearLocalStorage = () => {
+    localStorage.removeItem('tic-tac-toe-storage');
+  };
+
+  const startNewGame = (newGameMode: GameMode): void => {
+    setMoveHistory(freshMoveHistory);
+    setIsCrossNext(true);
+    setGameMode(newGameMode);
+    localStorage.setItem(
+      'tic-tac-toe-storage',
+      JSON.stringify({
+        moveHistory: freshMoveHistory,
+        isCrossNext: true,
+        gameMode: newGameMode,
+      }),
+    );
+  };
 
   useEffect(() => {
-    // get local storage item name 'tic-tac-toe-storage'
-    const {
-      moveHistory: moveHistoryLocalStorage = [],
-      isCrossNext: isCrossNextLocalStorage = true,
-    } = JSON.parse(localStorage.getItem('tic-tac-toe-storage') ?? '{}');
-    setMoveHistory(moveHistoryLocalStorage);
-    setIsCrossNext(isCrossNextLocalStorage);
+    if (ticTacToeLocalStorage === null && isNewQueryParam !== null) {
+      startNewGame(gameModeQueryParam ?? 'pvp');
+    } else {
+      const {
+        moveHistory: moveHistoryLocalStorage = [],
+        isCrossNext: isCrossNextLocalStorage = true,
+        gameMode: gameModeLocalStorage = 'pvp',
+      } = JSON.parse(ticTacToeLocalStorage ?? '{}');
+      setMoveHistory(moveHistoryLocalStorage);
+      setIsCrossNext(isCrossNextLocalStorage);
+      setGameMode(gameModeLocalStorage);
+    }
   }, []);
 
   const setMove = (index: number): void => {
@@ -57,44 +91,44 @@ function TicTacToe() {
     setMoveHistory(newMoveHistory);
     setIsCrossNext(!isCrossNext);
 
-    localStorage.setItem('tic-tac-toe-storage', JSON.stringify({
-      moveHistory: newMoveHistory,
-      isCrossNext: !isCrossNext,
-    }));
+    localStorage.setItem(
+      'tic-tac-toe-storage',
+      JSON.stringify({
+        moveHistory: newMoveHistory,
+        isCrossNext: !isCrossNext,
+      }),
+    );
   };
 
+  useEffect(() => {
+    if (gameMode === 'pvc' && !isCrossNext) {
+      // PVC mode, computer as circle
+      // get randaom index from moveHistory that is not filled
+      const emptySquareIndexes = moveHistory
+        .map((move, index) => (move === null ? index : null))
+        .filter((index) => index !== null) as number[];
+      const randomIndex = emptySquareIndexes[Math.floor(Math.random() * emptySquareIndexes.length)];
+      setMove(randomIndex);
+    }
+  }, [isCrossNext]);
+
   const onClickPlayAgain = (): void => {
-    setMoveHistory(freshMoveHistory);
-    setIsCrossNext(true);
-    localStorage.setItem('tic-tac-toe-storage', JSON.stringify({
-      moveHistory: freshMoveHistory,
-      isCrossNext: true,
-    }));
+    clearLocalStorage();
+    navigate('/choose-game-mode');
   };
 
   const winner = checkWinner(moveHistory);
-
-  let headerMsg = `This is ${isCrossNext ? 'Cross' : 'Circle'}'s turn`;
-  if (winner) {
-    headerMsg = `Congratulation! Winner is ${winner}.`;
-  }
+  const isDraw = moveHistory.every((move) => move !== null) && winner === null;
 
   return (
     <>
-      <div className="whose-turn-header">
-        {headerMsg}
-        {
-          winner && (
-            <button
-              className="play-again-button"
-              type="button"
-              onClick={onClickPlayAgain}
-            >
-              Play Again
-            </button>
-          )
-        }
-      </div>
+      <Header
+        gameMode={gameMode}
+        isCrossNext={isCrossNext}
+        winner={winner}
+        isDraw={isDraw}
+        onClickPlayAgain={onClickPlayAgain}
+      />
       <Board
         moveHistory={moveHistory}
         setMove={setMove}
