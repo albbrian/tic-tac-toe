@@ -134,7 +134,7 @@ function TicTacToe() {
         setMove={setMove}
         // isCrossNext={isCrossNext}
         // setIsCrossNext={setIsCrossNext}
-        isEnd={winner !== null}
+        isEnd={winner !== null || isDraw}
       />
     </>
   );

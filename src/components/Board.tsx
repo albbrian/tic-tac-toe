@@ -6,14 +6,10 @@ import Square from './Square';
 function Board({
   moveHistory,
   setMove,
-  // isCrossNext,
-  // setIsCrossNext,
   isEnd,
 }: {
   moveHistory: (Participant | null)[];
   setMove: (index: number) => void;
-  // isCrossNext: boolean;
-  // setIsCrossNext: React.Dispatch<React.SetStateAction<boolean>>;
   isEnd: boolean;
 }) {
   const [messageApi, contextHolder] = message.useMessage();
@@ -41,7 +37,7 @@ function Board({
   return (
     <>
       {contextHolder}
-      <div className="board">
+      <div className="board" data-testid="board">
         <div className="board__row">
           <Square value={moveHistory[0]} onClickSquare={() => onClickSquare(0)} />
           <Square value={moveHistory[1]} onClickSquare={() => onClickSquare(1)} />
