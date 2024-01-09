@@ -5,16 +5,15 @@ import Square from './Square';
 
 function Board({
   moveHistory,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  setMoveHistory,
-  isCrossNext,
-  setIsCrossNext,
+  setMove,
+  // isCrossNext,
+  // setIsCrossNext,
   isEnd,
 }: {
   moveHistory: (Participant | null)[];
-  setMoveHistory: React.Dispatch<React.SetStateAction<(Participant | null)[]>>;
-  isCrossNext: boolean;
-  setIsCrossNext: React.Dispatch<React.SetStateAction<boolean>>;
+  setMove: (index: number) => void;
+  // isCrossNext: boolean;
+  // setIsCrossNext: React.Dispatch<React.SetStateAction<boolean>>;
   isEnd: boolean;
 }) {
   const [messageApi, contextHolder] = message.useMessage();
@@ -35,10 +34,8 @@ function Board({
 
       return;
     }
-    const newMoveHistory = [...moveHistory];
-    newMoveHistory[index] = isCrossNext ? 'x' : 'o';
-    setMoveHistory(newMoveHistory);
-    setIsCrossNext(!isCrossNext);
+
+    setMove(index);
   };
 
   return (
