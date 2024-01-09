@@ -18,12 +18,12 @@ function GameModes() {
     // give me tsx for two cards for choosing either new game or resume the previous game, one on the left and one on the right
     <div className="landing">
       <div className="card" onClick={onClickPvp} role="button" tabIndex={0}>
-        <img src="/pvp.png" alt="new game" />
-        <h1>PVP</h1>
+        <img src="/pvp.png" alt="PVP: player vs player" />
+        <h1>Player vs Player</h1>
       </div>
       <div className="card" onClick={onClickPvc} role="button" tabIndex={0}>
-        <img src="/pvc.png" alt="continue previous game" />
-        <h1>PVC</h1>
+        <img src="/pvc.png" alt="PVC: player vs computer" />
+        <h1>Player vs Computer</h1>
       </div>
     </div>
   );
