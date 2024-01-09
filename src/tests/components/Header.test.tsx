@@ -5,7 +5,7 @@ import Header from '../../components/Header';
 describe('Header', () => {
   it('renders the game mode message', () => {
     const { getByText } = render(<Header gameMode="pvc" isCrossNext winner={null} isDraw={false} onClickPlayAgain={() => {}} />);
-    expect(getByText(/Game mode: pvc./)).toBeInTheDocument();
+    expect(getByText(/Game mode: pvc/)).toBeInTheDocument();
   });
 
   it('renders the turn message correctly for cross', () => {

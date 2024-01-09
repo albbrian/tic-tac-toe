@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 
-import './TicTacToe.scss';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Board from './Board';
 import Header from './Header';
@@ -27,7 +26,7 @@ const checkWinner = (moveHistory: (Participant | null)[]): Participant | null =>
   return null;
 };
 
-const freshMoveHistory = [
+export const freshMoveHistory = [
   null,
   null,
   null,
@@ -46,9 +45,12 @@ function TicTacToe() {
 
   const navigate = useNavigate();
   const location = useLocation();
+  console.log('🚀 ~ TicTacToe ~ location:', location);
   const queryParams = new URLSearchParams(location.search);
   const gameModeQueryParam = queryParams.get('game-mode') as GameMode | null;
+  console.log('🚀 ~ TicTacToe ~ gameModeQueryParam:', gameModeQueryParam);
   const isNewQueryParam = queryParams.get('is-new');
+  console.log('🚀 ~ TicTacToe ~ isNewQueryParam:', isNewQueryParam);
 
   const ticTacToeLocalStorage = localStorage.getItem('tic-tac-toe-storage');
 
@@ -103,7 +105,6 @@ function TicTacToe() {
   useEffect(() => {
     if (gameMode === 'pvc' && !isCrossNext) {
       // PVC mode, computer as circle
-      // get randaom index from moveHistory that is not filled
       const emptySquareIndexes = moveHistory
         .map((move, index) => (move === null ? index : null))
         .filter((index) => index !== null) as number[];
@@ -132,8 +133,6 @@ function TicTacToe() {
       <Board
         moveHistory={moveHistory}
         setMove={setMove}
-        // isCrossNext={isCrossNext}
-        // setIsCrossNext={setIsCrossNext}
         isEnd={winner !== null || isDraw}
       />
     </>

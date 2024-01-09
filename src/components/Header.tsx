@@ -1,4 +1,5 @@
 import React from 'react';
+import './Header.scss';
 
 function Header({
   gameMode,
@@ -13,7 +14,7 @@ function Header({
   isDraw: boolean;
   onClickPlayAgain: () => void;
 }) {
-  const gameModeMsg = `Game mode: ${gameMode}.`;
+  const gameModeMsg = `Game mode: ${gameMode}`;
   let headerMsg = `This is ${isCrossNext ? 'Cross' : 'Circle'}'s turn`;
 
   if (gameMode === 'pvc') {
@@ -29,7 +30,7 @@ function Header({
   }
 
   return (
-    <div className="whose-turn-header">
+    <div className="header" data-testid="header">
       <div>{gameModeMsg}</div>
       <div>{headerMsg}</div>
       {(winner || isDraw) && (
@@ -37,6 +38,7 @@ function Header({
           className="play-again-button"
           type="button"
           onClick={onClickPlayAgain}
+          data-testid="play-again-button"
         >
           Play Again
         </button>
