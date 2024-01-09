@@ -1,15 +1,29 @@
 $button-size: 200px;
 
+.square {
+  border: 1px solid black;
+  width: $button-size;
+  height: $button-size;
+
+  
+}
+
 .square__btn {
   background-color: transparent;
   // float: left;
 
   width: $button-size;
   height: $button-size;
-
   display: flex;
   justify-content: center;
   align-items: center;
 
-  font-size: $button-size / 1.75;
+  font-size: calc($button-size / 2);
+
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+
+  &.visible {
+    opacity: 1;
+  }
 }

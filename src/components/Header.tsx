@@ -17,13 +17,13 @@ function Header({
   let headerMsg = `This is ${isCrossNext ? 'Cross' : 'Circle'}'s turn`;
 
   if (gameMode === 'pvc') {
-    headerMsg = 'Player this is your turn. You are Cross.';
+    headerMsg = 'Player it is your turn. You are Cross.';
   } else {
     headerMsg = `This is ${isCrossNext ? 'Cross' : 'Circle'}'s turn`;
   }
 
   if (winner) {
-    headerMsg = `Congratulation! Winner is ${winner}.`;
+    headerMsg = `Congratulation! Winner is ${winner === 'o' ? 'Circle' : 'Cross'}.`;
   } else if (isDraw) {
     headerMsg = 'This is a draw.';
   }
