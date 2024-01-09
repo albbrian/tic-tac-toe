@@ -1,0 +1,15 @@
+$button-size: 200px;
+
+.square__btn {
+  background-color: transparent;
+  // float: left;
+
+  width: $button-size;
+  height: $button-size;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: $button-size / 1.75;
+}

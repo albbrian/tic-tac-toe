@@ -1,0 +1,13 @@
+/* .board__row {
+  overflow: auto;
+} */
+
+.board {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.board__row {
+  display: flex;
+}

@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+
+.ant-message-notice-content {
+  font-size: 20px; 
+}
+
+.ant-message .ant-message-notice-wrapper .ant-message-error>.anticon {
+  font-size: 20px; 
+}
