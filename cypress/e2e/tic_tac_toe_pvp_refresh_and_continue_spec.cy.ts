@@ -4,6 +4,7 @@ describe('Tic Tac Toe game', () => {
     cy.visit('http://localhost:3000/');
     cy.get('[data-testid="new-game-btn"]').should('exist');
     cy.get('[data-testid="continue-prev-game-btn"]').should('not.exist');
+    //test
 
     // Select New Game
     cy.get('[data-testid="new-game-btn"]').click();
