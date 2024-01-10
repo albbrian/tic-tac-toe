@@ -3,28 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Board from './Board';
 import Header from './Header';
-
-const checkWinner = (moveHistory: (Participant | null)[]): Participant | null => {
-  const winningPatterns = [
-    [0, 1, 2], // first row
-    [3, 4, 5], // second row
-    [6, 7, 8], // third row
-    [0, 3, 6], // first column
-    [1, 4, 7], // second column
-    [2, 5, 8], // third column
-    [0, 4, 8], // diagonal
-    [2, 4, 6], // diagonal
-  ];
-
-  for (let i = 0; i < winningPatterns.length; i += 1) {
-    const [a, b, c] = winningPatterns[i];
-    if (moveHistory[a] && moveHistory[a] === moveHistory[b] && moveHistory[a] === moveHistory[c]) {
-      return moveHistory[a];
-    }
-  }
-
-  return null;
-};
+import checkWinner from '../utils/check-winner';
 
 export const freshMoveHistory = [
   null,
@@ -45,12 +24,9 @@ function TicTacToe() {
 
   const navigate = useNavigate();
   const location = useLocation();
-  console.log('🚀 ~ TicTacToe ~ location:', location);
   const queryParams = new URLSearchParams(location.search);
   const gameModeQueryParam = queryParams.get('game-mode') as GameMode | null;
-  console.log('🚀 ~ TicTacToe ~ gameModeQueryParam:', gameModeQueryParam);
   const isNewQueryParam = queryParams.get('is-new');
-  console.log('🚀 ~ TicTacToe ~ isNewQueryParam:', isNewQueryParam);
 
   const ticTacToeLocalStorage = localStorage.getItem('tic-tac-toe-storage');
 
@@ -98,6 +74,7 @@ function TicTacToe() {
       JSON.stringify({
         moveHistory: newMoveHistory,
         isCrossNext: !isCrossNext,
+        gameMode,
       }),
     );
   };

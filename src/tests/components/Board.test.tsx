@@ -2,20 +2,8 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import Board from '../../components/Board';
+import { freshMoveHistory } from '../../components/TicTacToe';
 
-const freshMoveHistory = [
-  null,
-  null,
-  null,
-  null,
-  null,
-  null,
-  null,
-  null,
-  null,
-];
-
-// test suite for testing the board component
 describe('Board', () => {
   it('should render the board component', () => {
     const setMove = jest.fn();

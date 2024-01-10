@@ -1,10 +1,11 @@
 import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
-import GameModes from '../../components/GameModes';
 import { BrowserRouter as Router } from 'react-router-dom';
+import GameModes from '../../components/GameModes';
 
 describe('GameModes', () => {
   it('Should render the 2 cards with text "Player vs Player" and "Player vs Computer"', () => {
+    window.history.pushState({}, '', '/choose-game-mode');
     render(
       <Router>
         <GameModes />
@@ -16,6 +17,7 @@ describe('GameModes', () => {
   });
 
   it('Should navigate to "tic-tac-toe?game-mode=pvp&is-new" when click the pvp button', () => {
+    window.history.pushState({}, '', '/choose-game-mode');
     const { getByTestId } = render(
       <Router>
         <GameModes />
@@ -29,6 +31,7 @@ describe('GameModes', () => {
   });
 
   it('Should navigate to "tic-tac-toe?game-mode=pvc&is-new" when click the pvc button', () => {
+    window.history.pushState({}, '', '/choose-game-mode');
     const { getByTestId } = render(
       <Router>
         <GameModes />

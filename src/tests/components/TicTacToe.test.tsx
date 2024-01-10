@@ -1,31 +1,9 @@
 import React from 'react';
-import { render, fireEvent, screen } from '@testing-library/react';
-// import { createMemorySource, createHistory } from '@reach/router';
-import { createMemoryHistory } from 'history';
-// import { Router } from 'react-router-dom';
+import { render, fireEvent } from '@testing-library/react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import TicTacToe, {freshMoveHistory} from '../../components/TicTacToe';
+import TicTacToe, { freshMoveHistory } from '../../components/TicTacToe';
 
 describe('TicTacToe', () => {
-  /* beforeEach(() => {
-    Object.defineProperty(window, 'localStorage', {
-      value: {
-        getItem: jest.fn(),
-        setItem: jest.fn(),
-        removeItem: jest.fn(),
-        clear: jest.fn(),
-      },
-      writable: true,
-    });
-  }); */
-
-  /* it('renders the game board', () => {
-    const { getByTestId } = render(
-      <TicTacToe />
-    );
-    expect(getByTestId('board')).toBeInTheDocument();
-  }); */
-
   describe('when the localStorage do not have data for the game', () => {
     beforeEach(() => {
       Object.defineProperty(window, 'localStorage', {
@@ -44,9 +22,7 @@ describe('TicTacToe', () => {
 
       const { getByTestId } = render(
         <Router>
-          <Routes>
-            <Route path="/tic-tac-toe" element={<TicTacToe />} />
-          </Routes>
+          <TicTacToe />
         </Router>,
       );
 
@@ -66,9 +42,7 @@ describe('TicTacToe', () => {
 
       const { getByTestId } = render(
         <Router>
-          <Routes>
-            <Route path="/tic-tac-toe" element={<TicTacToe />} />
-          </Routes>
+          <TicTacToe />
         </Router>,
       );
 
@@ -80,6 +54,39 @@ describe('TicTacToe', () => {
         moveHistory: freshMoveHistory,
         isCrossNext: true,
         gameMode: 'pvc',
+      }));
+    });
+
+    const testCases = Array(9).fill(null).map((_, idx) => ({
+      idx,
+      testName: `should invoke localStorage.setItem with correct data when square ${
+        idx + 1
+      } is clicked`,
+    }));
+
+    test.each(testCases)('$testName', ({ idx }) => {
+      window.history.pushState({}, '', '/tic-tac-toe?game-mode=pvp&is-new=true');
+      const { getAllByTestId } = render(
+        <Router>
+          <TicTacToe />
+        </Router>,
+      );
+      const squares = getAllByTestId('square');
+      const squareIdxToClick = idx;
+      squares[squareIdxToClick].click();
+
+      expect(window.localStorage.setItem).toHaveBeenCalledTimes(2);
+      expect(window.localStorage.setItem).toHaveBeenNthCalledWith(1, 'tic-tac-toe-storage', JSON.stringify({
+        moveHistory: freshMoveHistory,
+        isCrossNext: true,
+        gameMode: 'pvp',
+      }));
+      const expectedMoveHistory: (Participant | null)[] = [...freshMoveHistory];
+      expectedMoveHistory[squareIdxToClick] = 'x';
+      expect(window.localStorage.setItem).toHaveBeenNthCalledWith(2, 'tic-tac-toe-storage', JSON.stringify({
+        moveHistory: expectedMoveHistory,
+        isCrossNext: false,
+        gameMode: 'pvp',
       }));
     });
   });
@@ -99,13 +106,11 @@ describe('TicTacToe', () => {
         },
         writable: true,
       });
-      window.history.pushState({}, '', '/tic-tac-toe?game-mode=pvp&is-new=true');
+      window.history.pushState({}, '', '/tic-tac-toe');
 
       const { getByTestId, getAllByTestId } = render(
         <Router>
-          <Routes>
-            <Route path="/tic-tac-toe" element={<TicTacToe />} />
-          </Routes>
+          <TicTacToe />
         </Router>,
       );
 
@@ -138,13 +143,11 @@ describe('TicTacToe', () => {
         },
         writable: true,
       });
-      window.history.pushState({}, '', '/tic-tac-toe?game-mode=pvp&is-new=true');
+      window.history.pushState({}, '', '/tic-tac-toe');
 
       const { getByTestId, getAllByTestId } = render(
         <Router>
-          <Routes>
-            <Route path="/tic-tac-toe" element={<TicTacToe />} />
-          </Routes>
+          <TicTacToe />
         </Router>,
       );
 
