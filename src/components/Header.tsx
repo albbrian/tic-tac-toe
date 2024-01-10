@@ -31,8 +31,8 @@ function Header({
 
   return (
     <div className="header" data-testid="header">
-      <div>{gameModeMsg}</div>
-      <div>{headerMsg}</div>
+      <div data-testid="game-mode-message">{gameModeMsg}</div>
+      <div data-testid="header-message">{headerMsg}</div>
       {(winner || isDraw) && (
         <button
           className="play-again-button"

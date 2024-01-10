@@ -20,7 +20,7 @@ describe('Board', () => {
     const { getAllByTestId } = render(
       <Board moveHistory={moveHistory} setMove={setMove} isEnd={false} />,
     );
-    const squares = getAllByTestId('square');
+    const squares = getAllByTestId(/square-\d/);
     squares.forEach((square, index) => {
       if (moveHistory[index] !== null) {
         expect(square).toHaveTextContent(moveHistory[index] as string);
@@ -35,7 +35,7 @@ describe('Board', () => {
     const { getAllByTestId } = render(
       <Board moveHistory={freshMoveHistory} setMove={setMove} isEnd={false} />,
     );
-    const squares = getAllByTestId('square');
+    const squares = getAllByTestId(/square-\d/);
     expect(squares.length).toBe(9);
   });
 
@@ -51,7 +51,7 @@ describe('Board', () => {
       const { getAllByTestId } = render(
         <Board moveHistory={freshMoveHistory} setMove={setMove} isEnd={false} />,
       );
-      const squares = getAllByTestId('square');
+      const squares = getAllByTestId(/square-\d/);
       const squareIdxToClick = idx;
       squares[squareIdxToClick].click();
 
@@ -66,7 +66,7 @@ describe('Board', () => {
     const { getAllByTestId } = render(
       <Board moveHistory={moveHistory} setMove={setMove} isEnd />,
     );
-    const squares = getAllByTestId('square');
+    const squares = getAllByTestId(/square-\d/);
     fireEvent.click(squares[0]);
     expect(setMove).not.toHaveBeenCalled();
   });
@@ -77,7 +77,7 @@ describe('Board', () => {
     const { getAllByTestId } = render(
       <Board moveHistory={moveHistory} setMove={setMove} isEnd={false} />,
     );
-    const squares = getAllByTestId('square');
+    const squares = getAllByTestId(/square-\d/);
     fireEvent.click(squares[0]);
     expect(setMove).not.toHaveBeenCalled();
   });

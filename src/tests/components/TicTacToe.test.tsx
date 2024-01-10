@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import TicTacToe, { freshMoveHistory } from '../../components/TicTacToe';
 
 describe('TicTacToe', () => {
@@ -71,7 +71,7 @@ describe('TicTacToe', () => {
           <TicTacToe />
         </Router>,
       );
-      const squares = getAllByTestId('square');
+      const squares = getAllByTestId(/square-\d/);
       const squareIdxToClick = idx;
       squares[squareIdxToClick].click();
 
@@ -117,7 +117,7 @@ describe('TicTacToe', () => {
       const header = getByTestId('header');
       expect(header).toHaveTextContent('Game mode: pvp');
 
-      const squares = getAllByTestId('square');
+      const squares = getAllByTestId(/square-\d/);
       expect(squares[0]).toHaveTextContent('o');
       expect(squares[1]).toHaveTextContent('x');
       expect(squares[2]).toHaveTextContent('');
@@ -155,7 +155,7 @@ describe('TicTacToe', () => {
       expect(header).toHaveTextContent('Game mode: pvp');
       expect(header).toHaveTextContent('Play Again');
 
-      const squares = getAllByTestId('square');
+      const squares = getAllByTestId(/square-\d/);
       expect(squares[0]).toHaveTextContent('x');
       expect(squares[1]).toHaveTextContent('o');
       expect(squares[2]).toHaveTextContent('o');
