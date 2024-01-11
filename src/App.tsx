@@ -7,15 +7,15 @@ import GameModes from './components/GameModes';
 
 const router = createBrowserRouter([
   {
-    path: '/landing',
+    path: 'landing',
     element: <Landing />,
   },
   {
-    path: '/choose-game-mode',
+    path: 'choose-game-mode',
     element: <GameModes />,
   },
   {
-    path: '/tic-tac-toe',
+    path: 'tic-tac-toe',
     element: <TicTacToe />,
   },
   {
