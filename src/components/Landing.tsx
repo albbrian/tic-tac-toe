@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import './Landing.scss';
 import { Modal } from 'antd';
 
-const pathName = process.env.PUBLIC_URL;
+const pathName = process.env.PUBLIC_URL || '/';
 
 function Landing() {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
@@ -31,7 +31,7 @@ function Landing() {
   };
 
   const onClickPlayAgain = () => {
-    navigate('/tic-tac-toe');
+    navigate('/choose-game-mode');
   };
 
   return (

@@ -15,7 +15,7 @@ const router = createBrowserRouter([
     element: <GameModes />,
   },
   {
-    path: 'tic-tac-toe',
+    path: 'play',
     element: <TicTacToe />,
   },
   {

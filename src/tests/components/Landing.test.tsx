@@ -118,7 +118,7 @@ describe('Landing', () => {
       expect(window.location.pathname).toBe('/landing');
     });
 
-    it('Should navigate to "/tic-tac-toe" when "Continue Previous Game" button is clicked', () => {
+    it('Should navigate to "/play" when "Continue Previous Game" button is clicked', () => {
       window.history.pushState({}, '', '/landing');
       const { getByTestId } = render(
         <Router>
@@ -129,7 +129,7 @@ describe('Landing', () => {
       const continuePrevGameButton = getByTestId('continue-prev-game-btn');
       fireEvent.click(continuePrevGameButton);
 
-      expect(window.location.pathname).toBe('/tic-tac-toe');
+      expect(window.location.pathname).toBe('/play');
     });
   });
 });

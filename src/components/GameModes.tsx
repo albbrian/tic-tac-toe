@@ -1,17 +1,17 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const pathName = process.env.PUBLIC_URL;
+const pathName = process.env.PUBLIC_URL || '/';
 
 function GameModes() {
   const navigate = useNavigate();
 
   const onClickPvp = () => {
-    navigate('/tic-tac-toe?game-mode=pvp&is-new');
+    navigate('/play?game-mode=pvp&is-new');
   };
 
   const onClickPvc = () => {
-    navigate('/tic-tac-toe?game-mode=pvc&is-new');
+    navigate('/play?game-mode=pvc&is-new');
   };
 
   return (

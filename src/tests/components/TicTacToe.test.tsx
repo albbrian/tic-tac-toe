@@ -18,8 +18,8 @@ describe('TicTacToe', () => {
       });
     });
 
-    it('setItem to localStorage and render the header correctly for path: /tic-tac-toe?game-mode=pvp&is-new=true', () => {
-      window.history.pushState({}, '', '/tic-tac-toe?game-mode=pvp&is-new=true');
+    it('setItem to localStorage and render the header correctly for path: /play?game-mode=pvp&is-new=true', () => {
+      window.history.pushState({}, '', '/play?game-mode=pvp&is-new=true');
 
       const { getByTestId } = render(
         <Router>
@@ -38,8 +38,8 @@ describe('TicTacToe', () => {
       }));
     });
 
-    it('setItem to localStorage and render the header correctly for path: /tic-tac-toe?game-mode=pvp&is-new=true', () => {
-      window.history.pushState({}, '', '/tic-tac-toe?game-mode=pvc&is-new=true');
+    it('setItem to localStorage and render the header correctly for path: /play?game-mode=pvp&is-new=true', () => {
+      window.history.pushState({}, '', '/play?game-mode=pvc&is-new=true');
 
       const { getByTestId } = render(
         <Router>
@@ -66,7 +66,7 @@ describe('TicTacToe', () => {
     }));
 
     test.each(testCases)('$testName', ({ idx }) => {
-      window.history.pushState({}, '', '/tic-tac-toe?game-mode=pvp&is-new=true');
+      window.history.pushState({}, '', '/play?game-mode=pvp&is-new=true');
       const { getAllByTestId } = render(
         <Router>
           <TicTacToe />
@@ -107,7 +107,7 @@ describe('TicTacToe', () => {
         },
         writable: true,
       });
-      window.history.pushState({}, '', '/tic-tac-toe');
+      window.history.pushState({}, '', '/play');
 
       const { getByTestId, getAllByTestId } = render(
         <Router>
@@ -144,7 +144,7 @@ describe('TicTacToe', () => {
         },
         writable: true,
       });
-      window.history.pushState({}, '', '/tic-tac-toe');
+      window.history.pushState({}, '', '/play');
 
       const { getByTestId, getAllByTestId } = render(
         <Router>
