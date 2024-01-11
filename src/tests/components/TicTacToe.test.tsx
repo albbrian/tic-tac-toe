@@ -3,6 +3,7 @@ import { render, fireEvent } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import TicTacToe, { freshMoveHistory } from '../../components/TicTacToe';
 
+// TODO: fix error in test (not wrapped in act())
 describe('TicTacToe', () => {
   describe('when the localStorage do not have data for the game', () => {
     beforeEach(() => {
