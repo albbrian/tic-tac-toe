@@ -15,18 +15,40 @@ function Header({
   onClickPlayAgain: () => void;
 }) {
   const gameModeMsg = `Game mode: ${gameMode}`;
-  let headerMsg = `This is ${isCrossNext ? 'Cross' : 'Circle'}'s turn`;
+  let headerMsg;
 
   if (gameMode === 'pvc') {
-    headerMsg = 'Player it is your turn. You are Cross.';
+    headerMsg = (
+      <span>
+        {'Player it is your turn. You are '}
+        <span className="participant">Cross</span>
+        .
+      </span>
+    );
   } else {
-    headerMsg = `This is ${isCrossNext ? 'Cross' : 'Circle'}'s turn`;
+    headerMsg = (
+      <span>
+        {'This is '}
+        <span className="participant">
+          {isCrossNext ? 'Cross' : 'Circle'}
+          &apos;s
+        </span>
+        {' turn'}
+      </span>
+    );
   }
 
   if (winner) {
-    headerMsg = `Congratulation! Winner is ${winner === 'o' ? 'Circle' : 'Cross'}.`;
+    // headerMsg = `Congratulation! Winner is ${winner === 'o' ? 'Circle' : 'Cross'}.`;
+    headerMsg = (
+      <span>
+        {'Congratulation! Winner is '}
+        <span className="participant">{winner === 'o' ? 'Circle' : 'Cross'}</span>
+        .
+      </span>
+    );
   } else if (isDraw) {
-    headerMsg = 'This is a draw.';
+    headerMsg = <span>This is a draw</span>;
   }
 
   return (
