@@ -1,10 +1,9 @@
 describe('Tic Tac Toe game', () => {
   it('completes a game with player vs player mode', () => {
     // Visit the game page
-    cy.visit('http://localhost:3000/');
+    cy.visit('http://localhost:3000/tic-tac-toe');
     cy.get('[data-testid="new-game-btn"]').should('exist');
     cy.get('[data-testid="continue-prev-game-btn"]').should('not.exist');
-    //test
 
     // Select New Game
     cy.get('[data-testid="new-game-btn"]').click();
@@ -27,7 +26,7 @@ describe('Tic Tac Toe game', () => {
     cy.get('[data-testid="square-0"]').should('contain', 'x');
     cy.get('[data-testid="square-1"]').should('contain', 'o');
 
-    cy.visit('http://localhost:3000/');
+    cy.visit('http://localhost:3000/tic-tac-toe');
 
     cy.get('[data-testid="new-game-btn"]').should('exist');
     cy.get('[data-testid="continue-prev-game-btn"]').should('exist');

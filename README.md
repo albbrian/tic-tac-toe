@@ -1,46 +1,24 @@
-# Getting Started with Create React App
+# Tic-Tac-Toe
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## The Tic-Tac-Toe App is deployed to Github Pages
+[Play Here](https://albbrian.github.io/tic-tac-toe)
 
-In the project directory, you can run:
+## Implementation Highlights
+1. Game state is persisted if the web app is refreshed. The [Landing Page](https://albbrian.github.io/tic-tac-toe/landing) will provide option to resume previous game.
+![Image](README/images/continue_previous_game.png)
 
-### `yarn start`
+2. Confirmation box is prompt to confirm user, when starting a new game, remove the previous game state.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+3. PVP (Player vs Player) and PVC (Player vs Computer) mode is available. PVC mode is implemented using randomized moves.
+![Image](README/images/game_modes.png)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+4. Unit test are written with high coverage.
+5. ![Image](README/images/unit_test_coverage.png)
+6. End to end testing is implemented using Cypress on following flow
+   1. Play through a game in PVP mode
+   2. Play through a game in PVP mode, refresh a page, visit the landing page and continue the game
+   3. Play through a game in PVC mode
+7. Setup CI/CD on github actions to run unit tests, e2e tests, and deploy the app to github
+pages [Here](https://albbrian.github.io/tic-tac-toe)

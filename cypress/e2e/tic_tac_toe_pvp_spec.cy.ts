@@ -1,7 +1,7 @@
 describe('Tic Tac Toe game', () => {
   it('completes a game with player vs player mode', () => {
     // Visit the game page
-    cy.visit('http://localhost:3000/');
+    cy.visit('http://localhost:3000/tic-tac-toe');
     cy.screenshot('1_landing_page');
 
     // Select New Game

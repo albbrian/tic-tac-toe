@@ -6,29 +6,29 @@ on:
       - main
 
 jobs:
-  # test:
-  #   runs-on: ubuntu-latest
+  test:
+    runs-on: ubuntu-latest
 
-  #   steps:
-  #   - name: Checkout code
-  #     uses: actions/checkout@v2
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-  #   - name: Set up Node.js
-  #     uses: actions/setup-node@v2
-  #     with:
-  #       node-version: 18
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: 18
 
-  #   - name: Install dependencies
-  #     run: yarn install --frozen-lockfile
+    - name: Install dependencies
+      run: yarn install --frozen-lockfile
 
-  #   - name: Run unit tests
-  #     run: yarn ci-test
+    - name: Run unit tests
+      run: yarn ci-test
 
-  #   - name: Run e2e tests
-  #     run: yarn ci-test-e2e
+    - name: Run e2e tests
+      run: yarn ci-test-e2e
 
   deploy:
-    # needs: test
+    needs: test
     runs-on: ubuntu-latest
 
     steps:
