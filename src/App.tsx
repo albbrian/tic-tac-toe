@@ -6,7 +6,7 @@ import Landing from './components/Landing';
 import GameModes from './components/GameModes';
 
 const pathName = process.env.PUBLIC_URL || '/';
-// console.log('🚀 ~ pathName:', pathName);
+console.log('🚀 ~ pathName:', pathName);
 
 const router = createBrowserRouter([
   {
@@ -23,7 +23,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/',
-    element: <Navigate to="landing" />,
+    element: <Navigate to="/landing" />,
   },
 ], { basename: pathName });
 
