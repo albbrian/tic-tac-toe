@@ -5,11 +5,9 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 const { redirect } = sessionStorage;
-console.log('🚀 ~ redirect:', redirect);
 delete sessionStorage.redirect;
 // eslint-disable-next-line no-restricted-globals
 if (redirect && redirect !== location.href) {
-  console.log('🚀 ~ redirecting');
   // eslint-disable-next-line no-restricted-globals
   history.replaceState(null, '', redirect);
 }
