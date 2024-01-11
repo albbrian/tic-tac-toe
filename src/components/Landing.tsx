@@ -30,8 +30,8 @@ function Landing() {
     setIsModalOpen(false);
   };
 
-  const onClickPlayAgain = () => {
-    navigate('/choose-game-mode');
+  const onClickContinue = () => {
+    navigate('/play');
   };
 
   return (
@@ -42,7 +42,7 @@ function Landing() {
         <h1>New Game</h1>
       </div>
       {(() => ticTacToeLocalStorage && (
-        <div className="card" onClick={onClickPlayAgain} role="button" tabIndex={0} data-testid="continue-prev-game-btn">
+        <div className="card" onClick={onClickContinue} role="button" tabIndex={0} data-testid="continue-prev-game-btn">
           <img src={`${pathName}/images/continue.png`} alt="continue previous game" />
           <h1>Continue Previous Game</h1>
         </div>
