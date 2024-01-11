@@ -15,10 +15,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ![Image](README/images/game_modes.png)
 
 4. Unit test are written with high coverage.
-5. ![Image](README/images/unit_test_coverage.png)
-6. End to end testing is implemented using Cypress on following flow
+   ![Image](README/images/unit_test_coverage.png)
+5. End to end testing is implemented using Cypress on following flow
    1. Play through a game in PVP mode
    2. Play through a game in PVP mode, refresh a page, visit the landing page and continue the game
    3. Play through a game in PVC mode
-7. Setup CI/CD on github actions to run unit tests, e2e tests, and deploy the app to github
+6. Setup CI/CD on github actions to run unit tests, e2e tests, and deploy the app to github
 pages [Here](https://albbrian.github.io/tic-tac-toe)
