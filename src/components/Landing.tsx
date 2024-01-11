@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Landing.scss';
+import './card-layout.scss';
 import { Modal } from 'antd';
 
 const pathName = process.env.PUBLIC_URL || '/';
@@ -36,7 +36,7 @@ function Landing() {
 
   return (
     // give me tsx for two cards for choosing either new game or resume the previous game, one on the left and one on the right
-    <div className="landing">
+    <div className="card-layout">
       <div className="card" onClick={onClickNewGame} role="button" tabIndex={0} data-testid="new-game-btn">
         <img src={`${pathName}/images/new_game.png`} alt="new game" />
         <h1>New Game</h1>

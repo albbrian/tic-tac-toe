@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import './card-layout.scss';
 
 const pathName = process.env.PUBLIC_URL || '/';
 
@@ -15,7 +16,7 @@ function GameModes() {
   };
 
   return (
-    <div className="landing">
+    <div className="card-layout">
       <div className="card" onClick={onClickPvp} onKeyDown={onClickPvp} role="button" tabIndex={0} data-testid="pvp-button">
         <img src={`${pathName}/images/pvp.png`} alt="PVP: player vs player" />
         <h1>Player vs Player</h1>
