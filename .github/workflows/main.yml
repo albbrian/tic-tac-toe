@@ -28,7 +28,7 @@ jobs:
   #     run: yarn ci-test-e2e
 
   deploy:
-    needs: test
+    # needs: test
     runs-on: ubuntu-latest
 
     steps:
