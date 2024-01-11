@@ -11,7 +11,7 @@ function Square({
   onClickSquare: () => void;
   idx?: string;
 }) {
-  const classNames = ['square__btn'];
+  const classNames = ['button'];
 
   if (value !== null) {
     classNames.push('visible');

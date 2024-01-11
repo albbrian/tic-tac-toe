@@ -1,29 +1,40 @@
-$button-size: 200px;
+:root {
+  --button-size: 200px;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --button-size: 150px;
+  }
+}
+
+@media (max-width: 576px) {
+  :root {
+    --button-size: 100px;
+  }
+}
 
 .square {
   border: 1px solid black;
-  width: $button-size;
-  height: $button-size;
+  width: var(--button-size);
+  height: var(--button-size);
 
-  
-}
+  .button {
+    background-color: transparent;
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-.square__btn {
-  background-color: transparent;
-  // float: left;
+    font-size: calc(var(--button-size) / 2);
 
-  width: $button-size;
-  height: $button-size;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
 
-  font-size: calc($button-size / 2);
-
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
-
-  &.visible {
-    opacity: 1;
+    &.visible {
+      opacity: 1;
+    }
   }
 }
