@@ -36,12 +36,12 @@ function Landing() {
     // give me tsx for two cards for choosing either new game or resume the previous game, one on the left and one on the right
     <div className="landing">
       <div className="card" onClick={onClickNewGame} role="button" tabIndex={0} data-testid="new-game-btn">
-        <img src="/new_game.png" alt="new game" />
+        <img src="new_game.png" alt="new game" />
         <h1>New Game</h1>
       </div>
       {(() => ticTacToeLocalStorage && (
         <div className="card" onClick={onClickPlayAgain} role="button" tabIndex={0} data-testid="continue-prev-game-btn">
-          <img src="/continue.png" alt="continue previous game" />
+          <img src="continue.png" alt="continue previous game" />
           <h1>Continue Previous Game</h1>
         </div>
       ))()}
