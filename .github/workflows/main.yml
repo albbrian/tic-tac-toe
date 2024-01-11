@@ -49,7 +49,7 @@ jobs:
     - name: Prepare 404.html
       run: |
         cp build/index.html build/404.html
-        sed -i '/<title>React App<\/title>/a <script>\n  sessionStorage.redirect = location.href;\n<\/script>' build/404.html
+        sed -i 's/<title>React App<\/title>/<title>React App<\/title><script>sessionStorage.redirect = location.href;<\/script>/g' build/404.html
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
