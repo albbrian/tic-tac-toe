@@ -44,7 +44,12 @@ jobs:
       run: yarn install --frozen-lockfile
 
     - name: Build project
-      run: npm run build
+      run: yarn build
+
+    - name: git config
+      run: |
+        git config --global user.name 'github-actions'
+        git config --global user.email 'github-actions@github.com'
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
