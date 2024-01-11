@@ -26,7 +26,7 @@
     "test": "react-scripts test",
     "ci-test": "CI=true react-scripts test",
     "test-e2e": "yarn cypress:run",
-    "ci-test-e2e": "concurrently \"yarn start\" \"yarn cypress:run\"",
+    "ci-test-e2e": "concurrently --kill-others \"yarn start\" \"yarn cypress:run\"",
     "eject": "react-scripts eject",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run"
