@@ -28,8 +28,10 @@
     <script>
       (function(){
         var redirect = sessionStorage.redirect;
+        console.log('🚀 ~ redirect:', redirect);
         delete sessionStorage.redirect;
         if (redirect && redirect != location.href) {
+          console.log('🚀 ~ redirecting');
           history.replaceState(null, null, redirect);
         }
       })();
