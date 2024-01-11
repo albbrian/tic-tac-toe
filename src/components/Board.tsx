@@ -15,17 +15,15 @@ function Board({
   const [messageApi, contextHolder] = message.useMessage();
 
   const onClickSquare = (index: number) => {
-    console.log(`Square ${index} clicked!`);
-
     if (isEnd) {
-      console.error('Game has already ended!');
+      console.log('Game has already ended!');
       messageApi.error('Game has already ended!');
 
       return;
     }
 
     if (moveHistory[index] !== null) {
-      console.error(`Square ${index} is already filled!`);
+      console.log(`Square ${index} is already filled!`);
       messageApi.error(`Square ${index} is already filled!`);
 
       return;

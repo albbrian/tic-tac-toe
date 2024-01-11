@@ -1,9 +1,9 @@
 import React from 'react';
+import { act } from 'react-dom/test-utils'; // import act
 import { render, fireEvent } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import TicTacToe, { freshMoveHistory } from '../../components/TicTacToe';
 
-// TODO: fix error in test (not wrapped in act())
 describe('TicTacToe', () => {
   describe('when the localStorage do not have data for the game', () => {
     beforeEach(() => {
@@ -72,9 +72,12 @@ describe('TicTacToe', () => {
           <TicTacToe />
         </Router>,
       );
+
       const squares = getAllByTestId(/square-\d/);
       const squareIdxToClick = idx;
-      squares[squareIdxToClick].click();
+      act(() => {
+        squares[squareIdxToClick].click();
+      });
 
       expect(window.localStorage.setItem).toHaveBeenCalledTimes(2);
       expect(window.localStorage.setItem).toHaveBeenNthCalledWith(1, 'tic-tac-toe-storage', JSON.stringify({
