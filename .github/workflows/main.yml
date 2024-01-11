@@ -46,11 +46,6 @@ jobs:
     - name: Build project
       run: yarn build
 
-    - name: git config
-      run: |
-        git config --global user.name 'github-actions'
-        git config --global user.email 'github-actions@github.com'
-
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
