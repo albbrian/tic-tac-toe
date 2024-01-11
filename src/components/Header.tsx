@@ -39,7 +39,6 @@ function Header({
   }
 
   if (winner) {
-    // headerMsg = `Congratulation! Winner is ${winner === 'o' ? 'Circle' : 'Cross'}.`;
     headerMsg = (
       <span>
         {'Congratulation! Winner is '}
@@ -48,7 +47,7 @@ function Header({
       </span>
     );
   } else if (isDraw) {
-    headerMsg = <span>This is a draw</span>;
+    headerMsg = <span>This is a draw.</span>;
   }
 
   return (

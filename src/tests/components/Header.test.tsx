@@ -9,28 +9,28 @@ describe('Header', () => {
   });
 
   it('renders the turn message correctly for cross', () => {
-    const { getByText } = render(<Header gameMode="pvp" isCrossNext winner={null} isDraw={false} onClickPlayAgain={() => {}} />);
-    expect(getByText(/This is Cross's turn/)).toBeInTheDocument();
+    const { getByTestId } = render(<Header gameMode="pvp" isCrossNext winner={null} isDraw={false} onClickPlayAgain={() => {}} />);
+    expect(getByTestId('header-message')).toHaveTextContent("This is Cross's turn");
   });
 
   it('renders the turn message correctly for circle', () => {
-    const { getByText } = render(<Header gameMode="pvp" isCrossNext={false} winner={null} isDraw={false} onClickPlayAgain={() => {}} />);
-    expect(getByText(/This is Circle's turn/)).toBeInTheDocument();
+    const { getByTestId } = render(<Header gameMode="pvp" isCrossNext={false} winner={null} isDraw={false} onClickPlayAgain={() => {}} />);
+    expect(getByTestId('header-message')).toHaveTextContent("This is Circle's turn");
   });
 
   it('renders the winner message when Cross is a winner', () => {
-    const { getByText } = render(<Header gameMode="pvp" isCrossNext winner="x" isDraw={false} onClickPlayAgain={() => {}} />);
-    expect(getByText(/Congratulation! Winner is Cross./)).toBeInTheDocument();
+    const { getByTestId } = render(<Header gameMode="pvp" isCrossNext winner="x" isDraw={false} onClickPlayAgain={() => {}} />);
+    expect(getByTestId('header-message')).toHaveTextContent('Congratulation! Winner is Cross.');
   });
 
   it('renders the winner message when Circle is a winner', () => {
-    const { getByText } = render(<Header gameMode="pvp" isCrossNext winner="o" isDraw={false} onClickPlayAgain={() => {}} />);
-    expect(getByText(/Congratulation! Winner is Circle./)).toBeInTheDocument();
+    const { getByTestId } = render(<Header gameMode="pvp" isCrossNext winner="o" isDraw={false} onClickPlayAgain={() => {}} />);
+    expect(getByTestId('header-message')).toHaveTextContent('Congratulation! Winner is Circle.');
   });
 
   it('renders the draw message when the game is a draw', () => {
-    const { getByText } = render(<Header gameMode="pvp" isCrossNext winner={null} isDraw onClickPlayAgain={() => {}} />);
-    expect(getByText(/This is a draw./)).toBeInTheDocument();
+    const { getByTestId } = render(<Header gameMode="pvp" isCrossNext winner={null} isDraw onClickPlayAgain={() => {}} />);
+    expect(getByTestId('header-message')).toHaveTextContent('This is a draw.');
   });
 
   it('calls the onClickPlayAgain function when the Play Again button is clicked', () => {
