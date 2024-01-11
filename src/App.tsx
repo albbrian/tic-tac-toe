@@ -5,24 +5,27 @@ import TicTacToe from './components/TicTacToe';
 import Landing from './components/Landing';
 import GameModes from './components/GameModes';
 
+const pathName = process.env.PUBLIC_URL || '/';
+// console.log('🚀 ~ pathName:', pathName);
+
 const router = createBrowserRouter([
   {
-    path: 'landing',
+    path: '/landing',
     element: <Landing />,
   },
   {
-    path: 'choose-game-mode',
+    path: '/choose-game-mode',
     element: <GameModes />,
   },
   {
-    path: 'tic-tac-toe',
+    path: '/play',
     element: <TicTacToe />,
   },
   {
     path: '/',
     element: <Navigate to="landing" />,
   },
-]);
+], { basename: pathName });
 
 function App() {
   return (
